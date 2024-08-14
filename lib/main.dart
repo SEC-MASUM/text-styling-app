@@ -23,6 +23,14 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
+  mySnackBar(context, message) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +42,21 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Flutter Text Styling"),
-            Text("Experiment with text styles"),
-            TextButton(onPressed: (){}, child: Text("Click me"),),
+            Text(
+              "Flutter Text Styling",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "Experiment with text styles",
+              style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
+            ),
+            TextButton(
+              onPressed: () {
+                mySnackBar(context, "You clicked the button!");
+              },
+              child: Text("Click me"),
+            ),
             Text("Welcome to Flutter!"),
-
           ],
         ),
       ),
